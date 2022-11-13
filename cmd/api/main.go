@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	_ "github.com/jackc/pgconn"
@@ -62,8 +63,9 @@ func openDb(dsn string) (*sql.DB, error) {
 
 func connectToDb() *sql.DB {
 
-	// dsn := os.Getenv("DSN")
-	dsn := "postgres://postgres:postgres@localhost:5434/"
+	dsn := os.Getenv("DSN")
+	fmt.Println(dsn)
+	// dsn := "postgres://postgres:postgres@localhost:5431/"
 	for {
 		connection, err := openDb(dsn)
 		if err != nil {
